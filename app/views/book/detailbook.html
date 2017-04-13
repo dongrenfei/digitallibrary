@@ -1,0 +1,193 @@
+<div id="content" class="group">
+  <h1 style="margin-top:0;height:33px">{{ books[index].name }}</h1>
+  <div class="group">
+    <div class="main-shot">
+      <div class="the-shot">
+        <div class="book-pic">
+          <a target="_blank" ng-href="{{books[index].image}}">
+            <img style="max-width: 210px; height: 290px; min-width: 210px; min-height: 290px;" src="{{books[index].image}}" alt="" />
+          </a>
+        </div>
+        <div class="book-info">
+          <div class="meta-act">
+            <span>Author: {{books[index].author}}</span>
+          </div>
+          <div class="meta-act">
+            <span>ISBN: {{books[index].isbn}}</span>
+          </div>
+          <div class="meta-act">
+            <span>Publisher: {{books[index].publisher}}</span>
+          </div>
+          <div class="meta-act">
+            <span>Page Count: {{books[index].pageCount}}</span>
+          </div>
+          <div class="meta-act">
+            <span>Category: {{books[index].category}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="screenshot-meta">
+        <div class="social-media meta-act meta-act-full" id="BorrowBtn" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+          <a href="" class="meta-act-link free" ng-click="borrow()" ng-show="books[index].status==0"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Borrow</a>
+          <!-- <p ng-show="books[index].status==1 && books[index].intrID == logInUser.intrID && logInUser.intrID" style="color:red;position:absolute;top:-45px">Contact Admin and take the book within two days.</p> -->
+          <a href="" class="meta-act-link cancel" ng-click="cancel()" ng-show="books[index].status==1 && books[index].intrID == logInUser.intrID && logInUser.intrID && !hover"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Reserved</a>
+          <a href="" class="meta-act-link cancel" data-toggle="modal" data-target="#cancelModal" ng-show="books[index].status==1 && books[index].intrID == logInUser.intrID && logInUser.intrID && hover"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</a>
+          <a href="" class="meta-act-link borrowed" ng-show="books[index].status==2 || (books[index].status==1 && books[index].intrID != logInUser.intrID)"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Borrowed</a>
+        </div>
+        <div class="meta-act">
+          <div class="group fav">
+            <a class="meta-act-link meta-like" href="" ng-class="{ILiked: books[index].isLiked}" ng-click="like()">{{books[index].likes.length}} Favorite</a>
+          </div>
+        </div>
+        <div class="meta-act">
+          <div class="group fav evaluate" ng-class="{noEvent: books[index].isRated}">
+            <a class="meta-evaluate" href="" ng-class="{moreRate: tarValue>=1 || books[index].rateValue>=1}" ng-mouseenter="tarValue = 1" ng-mouseleave="tarValue = 0" ng-click="rate(1)"><span></span></a>
+            <a class="meta-evaluate" href="" ng-class="{moreRate: tarValue>=2 || books[index].rateValue>=2}" ng-mouseenter="tarValue = 2" ng-mouseleave="tarValue = 0" ng-click="rate(2)"><span></span></a>
+            <a class="meta-evaluate" href="" ng-class="{moreRate: tarValue>=3 || books[index].rateValue>=3}" ng-mouseenter="tarValue = 3" ng-mouseleave="tarValue = 0" ng-click="rate(3)"><span></span></a>
+            <a class="meta-evaluate" href="" ng-class="{moreRate: tarValue>=4 || books[index].rateValue>=4}" ng-mouseenter="tarValue = 4" ng-mouseleave="tarValue = 0" ng-click="rate(4)"><span></span></a>
+            <a class="meta-evaluate" href="" ng-class="{moreRate: tarValue>=5 || books[index].rateValue>=5}" ng-mouseenter="tarValue = 5" ng-mouseleave="tarValue = 0" ng-click="rate(5)"><span></span></a>
+            <a class="meta-act-link" href="" ng-show="books[index].avaValue">(Average:{{books[index].avaValue}})</a>
+            <a class="meta-act-link" href="" ng-show="!books[index].avaValue">(No rates)</a>
+          </div>
+        </div>
+        <div id="contactDiv" class="meta-act">
+          <h3 class="meta-head">Contact Admin</h3>
+          <img src="../images/thumb_admin.jpg" alt="admin" class="img-inset">
+          <a class="meta-act-link" style="padding: 10px 0;">Charlene</a>
+          <a href="mailto:lzishuo@cn.ibm.com?subject=11Library" class="meta-act-link" style="padding: 0 0;"><span class="glyphicon glyphicon-envelope"></span> lzishuo@cn.ibm.com</a>
+          <a class="meta-act-link" style="padding: 10px 0;"><span class="glyphicon glyphicon-phone"></span> 17709812886</a>
+          <br />
+        </div>
+        <h3 class="meta-head" ng-show="showSimilarBooks">More Similar Books</h3>
+        <ol class="more-thumbs" ng-show="showSimilarBooks">
+          <li class="multi-thumb" ng-repeat="book in simBooks">
+            <a ng-href="#/book/{{book.isbn}}">
+              <img ng-src="{{book.image}}">
+            </a>
+          </li>
+        </ol>
+        <h3 class="meta-head">More Popular Books</h3>
+        <ol class="more-thumbs">
+          <li class="multi-thumb">
+            <a ng-href="#/book/{{popBooks[0].isbn}}">
+              <img ng-src="{{popBooks[0].image}}">
+            </a>
+          </li>
+          <li class="multi-thumb">
+            <a ng-href="#/book/{{popBooks[1].isbn}}">
+              <img ng-src="{{popBooks[1].image}}">
+            </a>
+          </li>
+          <li class="multi-thumb">
+            <a ng-href="#/book/{{popBooks[2].isbn}}">
+              <img ng-src="{{popBooks[2].image}}">
+            </a>
+          </li>
+          <li class="multi-thumb">
+            <a ng-href="#/book/{{popBooks[3].isbn}}">
+              <img ng-src="{{popBooks[3].image}}">
+            </a>
+          </li>
+        </ol>
+      </div>
+      <div class="shot-desc">
+        <p>{{books[index].desc}}</p>
+      </div>
+      <div id="comments-section">
+        <h2 class="count section ">{{books[index].comments.length}} Comments</h2>
+        <ol id="comments" class="comments">
+          <li class="response group " ng-repeat="comment in books[index].comments track by $index">
+            <div class="user_pic">
+              <img src="https://w3-connectionsapi.ibm.com/profiles/photo.do?email={{comment.intrID}}">
+            </div>
+            <div class="comments">
+              <button type="button" class="close" aria-label="Close" ng-show="comment.intrID == logInUser.intrID" ng-click="deleteComment(comment._id)"><span aria-hidden="true">&times;</span></button>
+              <span class="pull-right" style="margin-right:15px">{{$index + 1}}#</span>
+              <h2>{{comment.intrID}}</h2>
+              <div class="comment-body">
+                <p>{{comment.content}}</p>
+              </div>
+              <p class="comment-meta">
+                <a class="posted">{{comment.time | date:'yyyy-MM-dd HH:mm:ss'}}</a>
+              </p>
+            </div>
+          </li>
+        </ol>
+        <div class="form-group">
+          <legend class="color2" ng-hide="books[index].comments.length==0"></legend>
+          <textarea type="text" class="form-control" rows="5" style="border: 1px solid #dddddd; margin-bottom:5px;" ng-init="content=''" ng-model="content"></textarea>
+          <span style="margin-top:5px;">Count: {{content.length}}</span>
+          <a class="btn btn-default pull-right" role="button" ng-click="comment()" ng-disabled="content.length==0">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="alert alert-success warningBox center-block" role="alert" ng-show="books[index].status==1 && books[index].intrID == logInUser.intrID && logInUser.intrID && showMsg" ng-init="showMsg = true">Please take the book from Adminstrator before <strong>{{expireDate | date:'fullDate'}}</strong><a href="" data-toggle="modal" data-target="#cancelModal">Cancel</a><button type="button" class="close" aria-label="Close" ng-click="showMsg = false"><span aria-hidden="true">&times;</span></button></div>
+<div class="alert alert-success warningBox center-block" role="alert" ng-show="books[index].status==2 && books[index].intrID == logInUser.intrID && logInUser.intrID && showMsg" ng-init="showMsg = true" style="width: 40%; left:30%">Please return the book before <strong>{{books[index].returnTime | date:'fullDate'}}</strong><button type="button" class="close" aria-label="Close" ng-click="showMsg = false"><span aria-hidden="true">&times;</span></button></div>
+
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Warning</h4>
+      </div>
+      <div class="modal-body">
+        <p>You have borrowed <strong>TWO</strong> books, please read them first.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="noneModal" tabindex="-1" role="dialog" aria-labelledby="noneModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Warning</h4>
+      </div>
+      <div class="modal-body">
+        <p>The book: <strong>{{books[index].name}}</strong> is out of stock.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Warning Dialog</h4>
+      </div>
+      <div class="modal-body">
+        <p>Server error! Please try again.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirm Dialog</h4>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to cancel to borrow this book ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cancel();showMsg = false">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

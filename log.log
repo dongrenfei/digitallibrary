@@ -1,0 +1,60 @@
+Sat Jan 30 2016 03:51:58 GMT+0800 (China Standard Time) | /intrIDLogin|{"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"}|TypeError: Cannot read property 'nodeValue' of undefined
+Sat Jan 30 2016 12:26:34 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | TypeError: Cannot read property 'data' of undefined
+Sat Jan 30 2016 12:43:44 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | TypeError: Cannot read property 'data' of undefined
+Sat Jan 30 2016 12:43:48 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | TypeError: Cannot read property 'data' of undefined
+Sat Jan 30 2016 14:56:21 GMT+0800 (China Standard Time) | /admin/events/Frontend-003 | {"intrId":""} | TypeError: Cannot read property 'getDate' of undefined
+Sat Jan 30 2016 15:22:30 GMT+0800 (China Standard Time) | /book/9787111478881/borrow | {"intrID":"dlzhjj@cn.ibm.com"} | TypeError: Date(...).now is not a function
+Sat Jan 30 2016 15:22:34 GMT+0800 (China Standard Time) | /book/9787111478881/borrow | {"intrID":"dlzhjj@cn.ibm.com"} | TypeError: Date(...).now is not a function
+Sat Jan 30 2016 15:27:28 GMT+0800 (China Standard Time) | /book/9787111478881/borrow | {"intrID":"dlzhjj@cn.ibm.com"} | TypeError: Date(...).getTime is not a function
+Sat Jan 30 2016 15:41:18 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:41:47 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:41:54 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:41:56 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:42:22 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:44:34 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:44:40 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:45:36 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:45:44 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:47:46 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:48:09 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:48:10 GMT+0800 (China Standard Time) | /books | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:48:32 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:49:32 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:49:34 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:50:01 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:50:53 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:51:20 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:51:57 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:53:38 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:54:05 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:54:16 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:54:56 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:55:41 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:55:57 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:56:24 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:57:20 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:58:10 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+Sat Jan 30 2016 15:58:35 GMT+0800 (China Standard Time) | /admin/events | {} | ReferenceError: cancelExpiredBook is not defined
+    at Query.<anonymous> (C:\workspace\elevenlibrary\routes\borrowBook.js:84:13)
+    at C:\workspace\elevenlibrary\node_modules\mongoose\node_modules\kareem\index.js:177:19
+    at C:\workspace\elevenlibrary\node_modules\mongoose\node_modules\kareem\index.js:109:16
+    at doNTCallback0 (node.js:408:9)
+    at process._tickDomainCallback (node.js:378:13)
+Tue Feb 02 2016 14:59:14 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | ReferenceError: token is not defined
+    at Query.<anonymous> (C:\workspace\elevenlibrary\routes\user.js:224:28)
+    at C:\workspace\elevenlibrary\node_modules\mongoose\node_modules\kareem\index.js:177:19
+    at C:\workspace\elevenlibrary\node_modules\mongoose\node_modules\kareem\index.js:109:16
+    at doNTCallback0 (node.js:408:9)
+    at process._tickDomainCallback (node.js:378:13)
+Tue Feb 02 2016 15:21:30 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | Error: getaddrinfo ENOTFOUND bluepages.ibm.com bluepages.ibm.com:389
+    at errnoException (dns.js:26:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)
+Tue Feb 02 2016 15:21:43 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | Error: getaddrinfo ENOTFOUND bluepages.ibm.com bluepages.ibm.com:389
+    at errnoException (dns.js:26:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)
+Tue Feb 02 2016 15:21:48 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"dlzhjj@cn.ibm.com","pwd":"nlzq$1602"} | Error: getaddrinfo ENOTFOUND bluepages.ibm.com bluepages.ibm.com:389
+    at errnoException (dns.js:26:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)
+Tue Feb 02 2016 15:58:08 GMT+0800 (China Standard Time) | /intrIDLogin | {"intrID":"liuyibin@cn.ibm.com","pwd":"brian201601"} | Error: getaddrinfo ENOTFOUND bluepages.ibm.com bluepages.ibm.com:389
+    at errnoException (dns.js:26:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)

@@ -1,0 +1,26 @@
+<div>
+  <table ng-table="logTableParams" class="table table-condensed table-hover table-striped">
+    <tr ng-repeat="log in $data">
+      <td class="text-center" title="'#'">{{$index + 1}}
+      </td>
+      <td class="text-center" title="'_id'" sortable="'_id'">{{log._id}}
+      </td>
+      <td class="text-center" title="'Date'" sortable="'Date'">
+        {{log.time | date:'yyyy-MM-dd HH:mm:ss'}}
+      </td>
+      <td class="text-center" title="'URL'" sortable="'URL'">
+        {{log.url}}
+      </td>
+      <td class="text-center" title="'Request'" sortable="'Request'">
+        {{log.req}}
+      </td>
+      <td class="text-center logTd" title="'Error'" sortable="'Error'">
+        <p title="{{log.err}}"> {{log.err}}
+        </p>
+      </td>
+      <td class="text-center">
+        <button type="button" class="close" aria-label="Close" ng-click="deleteLog(log._id)"><span aria-hidden="true">&times;</span></button>
+      </td>
+    </tr>
+  </table>
+</div>

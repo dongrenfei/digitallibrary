@@ -1,0 +1,33 @@
+<div id="Grid" infinite-scroll="showMoreBooks()">
+  <div masonry>
+    <div class="masonry-brick" ng-repeat="book in books | filter : cate=='userLiked'? {isLiked: true} : ( cate=='userBorrowed' ? {intrID: logInUser.intrID}: {category: cate})">
+      <div class="gridItem" ng-class="{aHover: hover, notFree: book.status != 0}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+        <div class="bookShot">
+          <div>
+            <div class="hoverInfo">
+              <h4><strong>{{ book.name }}</strong></h4>
+              <h5>- {{book.author}}</h5>
+              <h5>- {{book.publisher}}</h5>
+              <h5>- {{book.category}}</h5>
+            </div>
+            <div class="freeInfo">
+            </div>
+            <div class="hoverLike">
+              <span>{{book.likes.length}}</span>
+              <a class="liked" ng-class="{isLiked: book.isLiked==true}" ng-click="like(book)"></a>
+            </div>
+            <a class="hoverLink" ng-href="#/book/{{book.isbn}}">
+              <img style="width:206px; min-width: 206px; min-height: 206px;" ng-src="{{ book.image }}" />
+            </a>
+          </div>
+          <div class="bookInfoFooter">
+            <ul class="bookInfoFooter">
+              <li class="comment"><span>{{ book.comments.length }}</span></li>
+              <li class="like"><span>{{ book.likes.length }}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

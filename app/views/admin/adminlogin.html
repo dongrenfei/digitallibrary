@@ -1,0 +1,38 @@
+<div id="LoginPage">
+  <div id="Header">
+    <a href="#/" id="logo"> </a>
+  </div>
+  <div id="Content">
+    <h1 class="pageTitle">Log in with your Admin ID</h1>
+    <div id="Login">
+      <div id="LoginForm">
+        <form name="loginForm" ng-submit="login()">
+          <ul>
+            <li>
+              <!-- Username -->
+              <div class="fieldContainer userField">
+                <input type="text" class="field" ng-model="user.intrID" placeholder="Admin ID" required>
+              </div>
+            </li>
+            <li>
+              <!-- Password -->
+              <div class="fieldContainer passField">
+                <input type="password" class="field" ng-model="user.pwd" placeholder="Password" required>
+              </div>
+            </li>
+          </ul>
+          <button type="submit" class="loginTrigger btn btn-info adminLoginTrigger" id="adminLoginBtn" ng-click="login()" data-loading-text="Logging...">Log in</button>
+        </form>
+      </div>
+      <div class="formError" ng-show="adminloginError">
+        <span>User name or passowrd goes wrong. Please try again.</span>
+      </div>
+       <div class="formError" ng-show="adminemailError">
+        <span>User name or passowrd goes wrong. Please try again.</span>
+      </div>
+      <div class="formError" ng-show="serverError">
+        <span>Server goes wrong. Please try again.</span>
+      </div>
+    </div>
+  </div>
+</div>

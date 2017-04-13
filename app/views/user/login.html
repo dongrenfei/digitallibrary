@@ -1,0 +1,48 @@
+<div id="LoginPage">
+  <div id="Header">
+    <a href="#/" id="logo"></a>
+  </div>
+  <div class="Content">
+    <h1 class="pageTitle">Login with your Intranet ID</h1>
+    <div id="Login">
+      <div id="LoginForm">
+        <form name="loginForm" novalidate>
+          <ul>
+            <li>
+              <!-- Username -->
+              <div class="fieldContainer userField">
+                <input type="text" class="field" name="email" tabindex="1" ng-model="user.intrID" placeholder="Intranet ID" required />
+              </div>
+            </li>
+            <li>
+              <!-- Password -->
+              <div class="fieldContainer passField">
+                <input type="password" class="field" name="password" tabindex="2" ng-model="user.pwd" placeholder="Password" required />
+              </div>
+            </li>
+          </ul>
+          <button type="submit" id="loginBtn" data-loading-text="Logging..." class="loginTrigger btn btn-info" ng-click="login()" >Login</button>
+        </form>
+      </div>
+      <div class="formError" ng-show="loginForm.submitted" ng-messages="loginForm.email.$error">
+        <span ng-message="required">Your email is required.</span>
+      </div>
+      <div class="formError" ng-show="loginForm.submitted" ng-messages="loginForm.password.$error">
+        <span ng-message="required">Your password is required.</span>
+      </div>
+      <div class="formError" ng-show="pwdError"> <!-- Password wrong actually -->
+        <span >User name or password is wrong.</span>
+      </div>
+      <div class="formError" ng-show="userError">
+        <span >This account doesn't exist.</span>
+      </div>
+      <div class="formError" ng-show="serverError">
+        <span >Server goes wrong. Please try again.</span>
+      </div>
+      <div id="LoginBelow">
+        <p class="signupText">
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

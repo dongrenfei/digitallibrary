@@ -1,0 +1,84 @@
+<div id="Header">
+  <a href="#/" id="logo"></a>
+</div>
+<div class="Content">
+  <h1 class="pageTitle medium setWidth">Enter your profile details to get started.</h1>
+  <div id="SignupContainer">
+    <form id="signupForm" name="signupForm" novalidate ng-submit="register()">
+      <ul>
+        <li>
+          <div class="fieldContainer">
+            <input type="email" class="field" name="email" tabindex="1" ng-model="user.intrID" placeholder="Email*" custom-email-format ng-maxlength=33 required />
+          </div>
+        </li>
+        <li>
+          <div class="fieldContainer">
+            <input type="text" class="field" name="username" tabindex="2" ng-model="user.name" placeholder="Username*" ng-maxlength=22 required/>
+          </div>
+        </li>
+        <li>
+          <div class="fieldContainer">
+            <input type="password" class="field" name="password" tabindex="3" ng-model="user.pwd" placeholder="Password*" ng-minlength=6 custom-pwd-format required />
+          </div>
+        </li>
+        <li>
+          <div class="fieldContainer">
+            <input type="password" class="field" name="confirm_password" tabindex="4" ng-model="user.rpwd" placeholder="Re-enter Password*" required/>
+          </div>
+        </li>
+        <li>
+          <div class="fieldContainer">
+            <input type="number" class="field" name="phoneNum" tabindex="5" ng-model="user.phoneNum" placeholder="PhoneNumber" custom-phone-num-format/>
+          </div>
+        </li>
+      </ul>
+      <div class="formError" ng-show="signupForm.email.$dirty && signupForm.email.$invalid" ng-messages="signupForm.email.$error">
+        <span ng-message="email">Your email is invalid.</span>
+        <span ng-message="format">Your email is not owned by IBM.</span>
+        <span ng-message="maxlength">Your email can't exceed 33 characters.</span>
+      </div>
+      <div class="formError" ng-messages="signupForm.username.$error">
+        <span ng-message="maxlength">Your name can't exceed 22 characters.</span>
+      </div>
+      <div class="formError" ng-show="signupForm.password.$dirty && signupForm.password.$invalid" ng-messages="signupForm.password.$error">
+        <span ng-message="minlength">Password can't less than 6 characters.</span>
+        <span ng-message="format">Wrong password format</span>
+      </div>
+      <div class="formError" ng-show="signupForm.phoneNum.$dirty && signupForm.phoneNum.$invalid" ng-messages="signupForm.phoneNum.$error">
+        <span ng-message="format">Please input 11 numbers.</span>
+      </div>
+
+
+      <div class="formError" ng-show="signupForm.submitted" ng-messages="signupForm.email.$error">
+        <span ng-message="required">Your email is required.</span>
+      </div>
+      <div class="formError" ng-show="signupForm.submitted" ng-messages="signupForm.username.$error">
+        <span ng-message="required">Your Username is required.</span>
+      </div>
+      <div class="formError" ng-show="signupForm.submitted" ng-messages="signupForm.password.$error">
+        <span ng-message="required">Your Password is required.</span>
+      </div>
+       <div class="formError" ng-show="signupForm.submitted" ng-messages="signupForm.phoneNum.$error">
+        <span ng-message="required">Your Password is required.</span>
+      </div>
+
+
+      <div class="formError" ng-show="signupForm.confirm_password.$dirty && user.pwd !== user.rpwd">
+        <span> Two passwords should be the same.</span>
+      </div>
+      <div class="formError" ng-show="emailError">
+        <span class="errorMessage">The email has existed.</span>
+      </div>
+      <div class="formError" ng-show="formatError">
+        <span class="errorMessage">The format is wrong.</span>
+      </div>
+      <div class="formError" ng-show="serverError">
+        <span class="errorMessage">Server goes wrong. Please try again.</span>
+      </div>
+      <div id="LoginBelow">
+        <p class="subPageText">Have an account? <a href="#/login">Log in now</a></p>
+      </div>
+      <button type="submit" class="registerBtn btn btn-info">Create and Log in</button>
+    </form>
+  </div>
+</div>

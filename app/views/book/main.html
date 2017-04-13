@@ -1,0 +1,53 @@
+<!-- Header -->
+<header id="Header">
+  <a ui-sref="main.all" id="logo"></a>
+  <ul class="list-inline pull-right" style="margin-top: 30px; margin-right: 100px">
+    <li ng-show="!logInUser.name">
+      <a ui-sref="login">Login</a>
+    </li>
+    <li ng-show="logInUser.name">
+      <div class="dropdown">
+        <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="cursor:pointer"><img class="img-rounded" src="{{logInUser.image}}" alt="" style="width:25px">
+          {{logInUser.name}}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a ui-sref="main.home">Home</a></li>
+          <li><a ng-class="{selected: cate=='userLiked'}" ng-click="cate='userLiked'" ui-sref="main.liked">My Favorites</a></li>
+          <li><a ng-class="{selected: cate=='userBorrowed'}" ng-click="cate='userBorrowed'" ui-sref="main.borrowed">My Orders</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a ui-sref="main.all" ng-click="logOut()">Logout</a></li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div>
+        <!-- <a style="cursor:pointer">Search<em></em></a> -->
+      </div>
+    </li>
+  </ul>
+</header>
+<!-- Page -->
+<section>
+  <div id="wrapper">
+    <div id="ColumnContainer">
+      <div id="SideColumn">
+        <h3>Discover</h3>
+        <ul class="nav menu" ng-init="cate==''">
+          <li><a ng-class="{selected: cate==''}" ui-sref="main.all">All</a></li>
+          <li><a ng-class="{selected: cate=='Frontend'}" ui-sref="main.frontend">Frontend</a></li>
+          <li><a ng-class="{selected: cate=='Backend'}" ui-sref="main.backend">Backend</a></li>
+          <li><a ng-class="{selected: cate=='Database'}" ui-sref="main.database">Database</a></li>
+          <li><a ng-class="{selected: cate=='Big Data'}" ui-sref="main.bigdata">Big Data</a></li>
+          <li><a ng-class="{selected: cate=='IOS/Android'}" ui-sref="main.ios">IOS/Android</a></li>
+          <li><a ng-class="{selected: cate=='UI Design'}" ui-sref="main.ui">UI Design</a></li>
+          <li><a ng-class="{selected: cate=='Other'}" ui-sref="main.other">Other</a></li>
+          <span class="line" ng-show="logInUser.name"></span>
+          <li ng-show="logInUser.name"><a ng-class="{selected: cate=='userLiked'}" ui-sref="main.liked">My Favorites</a></li>
+          <li ng-show="logInUser.name"><a ng-class="{selected: cate=='userBorrowed'}" ui-sref="main.borrowed">My Orders</a></li>
+        </ul>
+      </div>
+      <div ui-view></div>
+    </div>
+  </div>
+</section>

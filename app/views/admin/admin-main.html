@@ -1,0 +1,28 @@
+<div id="Header">
+  <a href="#/" id="logo"></a>
+  <ul class="list-inline pull-right" style="margin-top: 30px; margin-right: 100px">
+    <li>
+      <a href='' ng-click="adminLogOut()">Log out</a>
+    </li>
+  </ul>
+</div>
+<div id="wrapper">
+  <div id="ColumnContainer">
+    <nav class="navbar navbar-default col-md-11">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/manage/books">Manage</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active: currentState.route==0}"><a ui-sref="manage.books" ng-click="currentState.route=0">Books <span class="label label-info badge" style="background-color: #286090">{{currentState.book.count.totalNum}}</span></a></li>
+            <li ng-class="{active: currentState.route==1}"><a ui-sref="manage.events" ng-click="currentState.route=1">Events <span class="label label-info badge" style="background-color: #5bc0de">{{currentState.events.count}}</span></a></li>
+            <li ng-class="{active: currentState.route==2}"><a ui-sref="manage.logs" ng-click="currentState.route=2">Logs <span class="label label-info badge" style="background-color: #d9534f">{{currentState.logs.count}}</span></a></li>
+          </ul>
+          <p ng-if="currentState.route==0" class="navbar-text"><strong>{{currentState.book.count.totalNum}}</strong>&nbsp; books:&nbsp;&nbsp;<strong>{{currentState.book.count.freeNum}}</strong>&nbsp;free&nbsp;&nbsp;&nbsp;<strong>{{currentState.book.count.resNum}}</strong>&nbsp;reserved&nbsp;&nbsp;&nbsp;<strong>{{currentState.book.count.borNum}}</strong>&nbsp;borrowed&nbsp;&nbsp;&nbsp;</p>
+        </div>
+      </div>
+    </nav>
+    <div ui-view class="col-md-11"></div>
+  </div>
+</div>

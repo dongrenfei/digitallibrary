@@ -1,0 +1,204 @@
+<div>
+  <script type="text/ng-template" id="headerCheckbox.html">
+    <input type="checkbox" ng-model="checkboxes.checked" class="select-all" value="" />
+  </script>
+  <div class="row">
+    <button ui-sref="manage.newBook" class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-plus"></span> New</button>
+    <button class="btn btn-danger navbar-btn" ng-click="deleteBooks()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+    <button class="btn btn-primary navbar-btn" ng-click="modifyBook()"><span class="glyphicon glyphicon-pencil"></span> Modify</button>
+    <button class="btn btn-warning navbar-btn pull-right" data-toggle="modal" data-target="#myModal" ng-click="setTable()"><span class="glyphicon glyphicon-cog"></span> Setting</button>
+    <div class="alert alert-success bookAlert" role="alert" ng-show="currentState.book.message.type==1">Book&nbsp;(<strong>"{{currentState.book.message.book.unqId}}",&nbsp;"{{currentState.book.message.book.name}}"</strong>)&nbsp;has been added.</div>
+    <div class="alert alert-success bookAlert" role="alert" ng-show="currentState.book.message.type==2">Book&nbsp;(<strong>"{{currentState.book.message.book.unqId}}",&nbsp;"{{currentState.book.message.book.name}}"</strong>)&nbsp;has been deleted.</div>
+    <div class="alert alert-success bookAlert" role="alert" ng-show="currentState.book.message.type==3"><strong>{{currentState.book.message.book.count}}</strong>&nbsp;Book have been deleted.</div>
+    <div class="alert alert-success bookAlert" role="alert" ng-show="currentState.book.message.type==4">Book&nbsp;(<strong>"{{currentState.book.message.book.unqId}}",&nbsp;"{{currentState.book.message.book.name}}"</strong>)&nbsp;has been saved.</div>
+    <div class="alert alert-danger bookAlert" role="alert" ng-show="currentState.book.message.type==9">Book Delete:<strong>{{currentState.book.message.book.succCount}}</strong> Success, <strong>{{currentState.book.message.book.failCount}}</strong> Failed.</div>
+  </div>
+  <table ng-table="tableParams" class="table table-condensed table-hover" show-filter="setting.showAllFilters">
+    <tr ng-repeat="book in $data" ng-class="{success: book.status==2, danger: book.status== 1}">
+      <td class="text-center" header="'headerCheckbox.html'">
+        <input type="checkbox" ng-model="checkboxes.items[book.unqId]" />
+      </td>
+      <td class="text-center" title="'#'">
+        <a ng-href="#/manage/book/{{book.unqId}}"><span class="glyphicon glyphicon-pencil"></span></a>
+      </td>
+      <td class="text-center" title="'ID'" filter="{ unqId: 'text'}" sortable="'unqId'">{{book.unqId}}
+      </td>
+      <td class="text-center" title="'ISBN'" filter="{ isbn: 'text'}" sortable="'isbn'">
+        {{book.isbn}}
+      </td>
+      <td class="text-center" title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+        {{book.name}}
+      </td>
+      <td class="text-center" title="'Author'" filter="{ author: 'text'}" sortable="'author'">
+        {{book.author}}
+      </td>
+      <td class="text-center" title="'Publisher'" ng-if="setting.showPublisher" filter="{ publisher: 'text'}" sortable="'publisher'">
+        {{book.publisher}}
+      </td>
+      <td class="text-center" title="'Category'" filter="{ category: 'select'}" sortable="'category'">
+        {{book.category}}
+      </td>
+      <td class="text-center" title="'Borrower'" filter="{ borrower: 'text'}" sortable="'borrower'">
+        {{book.intrID}}
+      </td>
+      <td class="text-center" title="'History'"sortable="'history'">
+        <span ng-repeat="item in book.borrower">{{item.name}} </span>
+      </td>
+      <td class="text-center" title="'BorrowTime'" filter="{ borrowTime: 'text'}" sortable="'borrowTime'">
+        {{book.borrowTime | date:'yyyy-MM-dd'}}
+      </td>
+      <td class="text-center" title="'ReturnTime'" filter="{ returnTime: 'text'}" sortable="'returnTime'">
+        {{book.returnTime | date:'yyyy-MM-dd'}}
+      </td>
+      <td class="text-center" title="'ApplyTime'" filter="{ applyTime: 'text'}" sortable="'applyTime'">
+        {{book.applyTime | date:'yyyy-MM-dd'}}
+      </td>
+      <td class="text-center" title="'PageCount'" ng-if="setting.showPageCount" filter="{ pageCount: 'number'}" sortable="'pageCount'">
+        {{book.pageCount}}
+      </td>
+      <td class="text-center" title="'Price'" ng-if="setting.showPrice" filter="{ price: 'number'}" sortable="'price'">
+        {{book.price}}
+      </td>
+      <td class="text-center" title="'Likes'" ng-if="setting.showLikes" filter="{ likeNum: 'number'}" sortable="'likeNum'">
+        {{book.likes.length}}
+      </td>
+      <td class="text-center" title="'Comments'" ng-if="setting.showComments" filter="{ commentNum: 'number'}" sortable="'commentNum'">
+        {{book.commentNum}}
+      </td>
+      <td class="text-center" title="'Evaluation'" ng-if="setting.showEvaluations" filter="{ 'evaluation.number': 'number'}" sortable="'evaluation.number'">
+        {{book.evaluation.value}}{{book.evaluation.number}}
+      </td>
+      <td class="text-center" title="'Status'" filter="{ status: 'select'}" filter-data="[{ id: '', title: 'All'},{ id: '0', title: 'Free'},{ id: '1', title: 'Reserved'},{ id: '2', title: 'Borrowed'}]" sortable="'status'">
+        {{book.status==0? 'Free':(book.status==1?'Reserved':'Borrowed')}}
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Setting</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Search</label>
+            <div class="col-md-8 input-group" id="selectdiv">
+              <span class="input-group-btn" id="selectspan">
+                    <select class="form-control" id="selectselect" ng-model="setting.search.type">
+                      <option value="0">ID</option>
+                      <option value="1">Name</option>
+                      <option value="2">Author</option>
+                      <option value="3">ISBN</option>
+                    </select>
+                  </span>
+              <input type="text" class="form-control" id="selectinput" ng-model="setting.search.value">
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Status</label>
+            <div class="col-md-8">
+              <select class="form-control" ng-model="tableParams.filter().status" ng-options="status.id as status.title for status in statuses">
+              <option value="">All</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Filter</label>
+            <div class="col-md-8">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="setting.showAllFilters"> Show all filters
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="radio-inline">
+                  <input type="radio" ng-model="tableParams.settings().filterOptions.filterComparator" ng-change="tableParams.reload()" ng-value="true" /> Strict
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" ng-model="tableParams.settings().filterOptions.filterComparator" ng-change="tableParams.reload()" ng-value="false" /> No strict
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Column</label>
+            <div class="col-md-8">
+              <div>
+                <label class="checkbox-inline col-sm-3">
+                  <input type="checkbox" ng-model-options="{ getterSetter: true }" ng-model="setting.showPublisher">Publisher
+                </label>
+                <label class="checkbox-inline col-sm-3">
+                  <input type="checkbox" value="option1" ng-model="setting.showPageCount">PageCount
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" ng-model="setting.showPrice">Price
+                </label>
+              </div>
+              <div>
+                <label class="checkbox-inline col-sm-3">
+                  <input type="checkbox" ng-model="setting.showLikes">Likes
+                </label>
+                <label class="checkbox-inline col-sm-3">
+                  <input type="checkbox" ng-model="setting.showComments">Comments
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" ng-model="setting.showEvaluations">Evaluations
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <div class="center-block">
+            <button type="button" class="btn btn-danger" ng-click="restoreTable()">Restore</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelTable()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="deleteBooksModal" tabindex="-1" role="dialog" aria-labelledby="deleteBooksModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Delete Books</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4>Are you sure to <strong>delete</strong> these books below?</h4>
+          <table class="table table-striped">
+            <colgroup span="1" width="5%" />
+            <colgroup span="1" width="10%" />
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>ISBN</th>
+                <th ng-show="deleteBookList.isDeleting">Result</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="book in deleteBookList.list">
+              <th>{{$index + 1}}</th>
+              <th>{{book.unqId}}</th>
+              <th>{{book.name}}</th>
+              <th>{{book.isbn}}</th>
+              <th ng-show="deleteBookList.isDeleting"><span ng-show="book.delSuc == 1" class="glyphicon glyphicon-ok"></span><span ng-show="book.delSuc ==2" class="glyphicon glyphicon-remove"></span></th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="startDelete()" id="deleteButton" data-loading-text="Deleting..." autocomplete="off">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
