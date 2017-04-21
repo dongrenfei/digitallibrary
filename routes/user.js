@@ -175,13 +175,13 @@ module.exports = function(app) {
     var pwd = req.body.pwd;
 
     bluepage.authenticate(intrID, pwd, function(success) {
-      if (success) {
+      if (success) {console.log("bluepage.authenticate Successfully.");
         bluepage.getPersonInfoByIntranetID(intrID, function(result) {
-          if (result === 'error') {
+          if (result === 'error') {console.log("bluepage.getPersonInfoByIntranetID error!");
             res.send({
               errType: 1
             });
-          } else {
+          } else {console.log("bluepage.getPersonInfoByIntranetID Successfully.");
             var phoneNum = result.userTelephonenumber.slice(result.userTelephonenumber.indexOf('-')).replace(/[\-]+/g, '');
             var newUser = {
               'intrID': intrID,
