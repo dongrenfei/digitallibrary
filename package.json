@@ -20,7 +20,7 @@
     "express": "4.13.x",
     "express-session": "^1.13.0",
     "http-server": "^0.6.1",
-    "ibm_bluepages": "^1.0.7",
+    "ibm_bluepages": "1.1.4",
     "karma": "~0.12",
     "karma-chrome-launcher": "^0.1.12",
     "karma-firefox-launcher": "^0.1.6",
