@@ -227,7 +227,7 @@ module.exports = function(app) {
             console.log('GetNameByIntranetID', result);
           }
         });
-      } else {
+      } else {console.log("bluepage.authenticate Failed!");
         res.send({
           errType: 1
         });
